@@ -1,0 +1,86 @@
+//font imports
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+//color variables
+$color-primary: #fff;
+$color-blue: #213f7d;
+$color-input-background: #fff;
+$color-light-blue: #39cdcc;
+$color-faint-blue: #7a8cb1;
+
+.sidebar {
+  display: flex;
+  width: 250px;
+  padding: 33px 0 52px 30px;
+  background-color: $color-primary;
+  height: 100%;
+  overflow: auto;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+
+  .sidebar-item-container {
+    cursor: pointer;
+    transition: background-color 0.3s;
+   
+        &.active-horizontal-bar{
+            width: 280px;
+            height: 40px;
+            margin-left: -30px;
+           background-color: rgb(57, 205, 204,0.06);
+           border-left: 3px solid $color-light-blue; 
+            padding-left: 28px; 
+        }
+    
+  }
+
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    .top-sidebar-menu-1 {
+      padding: 2px 5px 2px 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: $color-blue;
+    }
+    .top-sidebar-menu-2 {
+      padding: 52px 2px 26px 2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: $color-faint-blue;
+    }
+    .icon-gap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sidebar-menu-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      color: $color-blue;
+      text-decoration: none;
+      width: 220px;
+
+      .menu-item {
+        margin-right: 10px;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 12px;
+        font-family: "Work Sans", sans-serif;
+      }
+
+    }
+.divider{
+    border-top: $color-faint-blue;
+    margin-top: 71px;
+    margin-left:-30px;
+}
+.item-color{
+    color: $color-faint-blue;  
+  }
+  }
+}
