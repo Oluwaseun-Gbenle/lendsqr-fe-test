@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
-import { Card } from './Card'
+import { LoanSummaryCard } from './LoanSummaryCard'
 import { CardProps } from '../../Interfaces/CardProps'
 import { approveUserSVG, cancelUserSVG, eyeSVG, filterSVG, menuSVG } from '../../Utils/svg-icons'
 import FilterForm from './Filterform'
 import Pagination from './Pagination'
 import { UsersProps } from '../../Interfaces/UsersProps'
-import { fetchUserData, fetchUserDetailsSummary } from '../../data services/apiservice'
+import { fetchUserData, fetchUserLoanSummary } from '../../data services/apiservice'
 
 
 const Users: FC<any> = ({ setActiveItem }) => {
@@ -16,7 +16,7 @@ const Users: FC<any> = ({ setActiveItem }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [users, setUsers] = useState<UsersProps[]>([]);
   const [initialUsers, setInitialUsers] = useState<UsersProps[]>([]);
-  const [userDetailsSummary, setUserDetailsSummary] = useState<CardProps[]>();
+  const [userLoanSummary, setUserLoanSummary] = useState<CardProps[]>();
   const [itemsPerPage, setItemsPerPage] = useState<number>(50);
   const [paginatedUsers, setPaginatedUsers] = useState<UsersProps[]>([]);
 
@@ -34,17 +34,17 @@ const Users: FC<any> = ({ setActiveItem }) => {
         console.error('Failed to fetch users:', error);
       }
     };
-    const getUserDetailsSummary = async () => {
+    const getUserLoanSummary = async () => {
       try {
-        const data = await fetchUserDetailsSummary();
-        setUserDetailsSummary(data);
+        const data = await fetchUserLoanSummary();
+        setUserLoanSummary(data);
       } catch (error) {
         console.error('Failed to fetch users:', error);
       }
     };
 
     getUserData();
-    getUserDetailsSummary();
+    getUserLoanSummary();
   }, []);
 
   // Handling change in currentPage or itemsPerPage
@@ -69,8 +69,8 @@ const Users: FC<any> = ({ setActiveItem }) => {
     <div className='users-container'>
       <div className="page-title">Users</div>
       <div className="summary-cards">
-        {userDetailsSummary?.map((item: CardProps) => (
-          <Card key={item.title} title={item.title} value={item.value} icon={item.icon} iconColor={item.iconColor} />
+        {userLoanSummary?.map((item: CardProps) => (
+          <LoanSummaryCard key={item.title} title={item.title} value={item.value} icon={item.icon} iconColor={item.iconColor} />
         ))}
       </div>
       <div className='table-container'>
