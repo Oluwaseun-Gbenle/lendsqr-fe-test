@@ -4,4 +4,5 @@ export interface SideBarProps {
     menuItems: MenuItem[];
     activeItem:string;
     setActiveItem:any;
+    toggleSideMenu:boolean
 }

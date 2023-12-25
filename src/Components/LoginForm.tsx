@@ -55,7 +55,7 @@ const LoginForm: React.FC = () => {
                     <LogoSVG />
                 </header>
                 <div className="pablo-image-container">
-                    <img src="/images/pablo-sign-in 1.png" alt="pablo-sign-in" height="337.5" />
+                    <img src="/images/pablo-sign-in 1.png" alt="pablo-sign-in" className="img-height"  />
                 </div>
             </div>
             <div className="second-content">

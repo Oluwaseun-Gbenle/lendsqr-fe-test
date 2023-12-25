@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
 import '../../Styles/Dashboard.scss';
 import { UsersProps } from '../../Interfaces/UsersProps';
-import { log } from 'console';
 
 const FilterForm: FC<any> = ({ initialUsers, setUsers }) => {
     const [organization, setOrganization] = useState<string>('');
@@ -35,7 +34,7 @@ const FilterForm: FC<any> = ({ initialUsers, setUsers }) => {
             filteredUsers = initialUsers.filter((user: UsersProps) => user.date === filters.date);
         }
         if (filters.phone) {
-            filteredUsers = initialUsers.filter((user: UsersProps) => user.phone?.includes(filters.phone));
+            filteredUsers = initialUsers.filter((user: UsersProps) => user.phoneNumber?.includes(filters.phone));
         }
         if (filters.status) {
             filteredUsers = initialUsers.filter((user: UsersProps) => user.status?.toLowerCase() === filters.status?.toLowerCase());

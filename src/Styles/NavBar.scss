@@ -83,5 +83,29 @@ $color-faint-blue: #7a8cb1;
         
       }
     }
+    .hamburger-menu{
+      display: none;
+    }
   }
-  
+  @media (max-width: 1400px) {
+    .navbar {
+    .search-bar {
+      display: none;
+     input {
+        margin-left: 0px;
+      }
+    }
+  }
+
+  }
+  @media (max-width: 768px) {
+    .navbar {
+      .navbar-links {
+      display: none;
+    }
+    .hamburger-menu{
+      display: block;
+    }
+  }
+
+  }

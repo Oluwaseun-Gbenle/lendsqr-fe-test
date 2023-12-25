@@ -4,14 +4,14 @@ import { arrowDownSVG, dashboardSVG, logoutSVG, organizationSVG } from '../../Ut
 import { SideBarProps } from '../../Interfaces/SideBarProps';
 
 
-const SideBar: FC<SideBarProps> = ({ menuItems, activeItem, setActiveItem }) => {
+const SideBar: FC<SideBarProps> = ({ menuItems, activeItem, setActiveItem, toggleSideMenu }) => {
 
     const handleItemClick = (itemName: string) => {
         setActiveItem(itemName);
     };
 
     return (
-        <aside className="sidebar">
+        <aside className="sidebar" style={toggleSideMenu ? { display: 'none' } : {}}>
             <nav>
                 <ul className="sidebar-menu">
                     <li>

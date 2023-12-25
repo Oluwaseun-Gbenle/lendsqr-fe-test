@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../Styles/NavBar.scss';
 import LogoSVG from '../../Utils/LogoSVG';
 import { NavBarProps } from '../../Interfaces/NavBarProps';
-import { arrowDown2SVG, bellSVG, searchSVG } from '../../Utils/svg-icons';
+import { arrowDown2SVG, bellSVG, hamburgerMenuSVG, searchSVG } from '../../Utils/svg-icons';
 
 
-const NavBar: React.FC<NavBarProps> = ({ user }) => {
+const NavBar: React.FC<NavBarProps> = ({ userProfileData, toggleSideMenu, setToggleSideMenu }) => {
   return (
     <header className="navbar">
+      <div className="hamburger-menu" onClick={() => { setToggleSideMenu(!toggleSideMenu) }}>{hamburgerMenuSVG}</div>
       <LogoSVG />
       <div className="search-bar">
         <input type="text" placeholder="Search for anything" />
@@ -19,8 +20,8 @@ const NavBar: React.FC<NavBarProps> = ({ user }) => {
           <span className="notifications-icon">{bellSVG}</span>
         </a>
         <div className="user-profile">
-          <img src={user.avatarUrl} alt="User profile" />
-          <span className="user-name">{user.name}</span>
+          <img src={userProfileData?.avatarUrl} alt="User profile" />
+          <span className="user-name">{userProfileData?.name}</span>
           <span className="dropdown-icon">{arrowDown2SVG}</span> {/* Replace with actual icon */}
         </div>
       </nav>
