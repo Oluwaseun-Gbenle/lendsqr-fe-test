@@ -1,4 +1,4 @@
-[link to google document on project](https://docs.google.com/document/d/1emHP1e-VeTOe6HqN1e_Qz29aFigNUxVPoRv_jS6BL-k/edit?usp=sharing)
+link to google document on project:[](https://docs.google.com/document/d/1emHP1e-VeTOe6HqN1e_Qz29aFigNUxVPoRv_jS6BL-k/edit?usp=sharing)
 
 # Project Overview
 ## App.tsx
