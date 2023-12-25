@@ -1,11 +1,10 @@
-// SideBar.tsx
-import React from 'react';
+import React, { FC } from 'react';
 import "../../Styles/SideBar.scss"
 import { arrowDownSVG, dashboardSVG, logoutSVG, organizationSVG } from '../../Utils/svg-icons';
 import { SideBarProps } from '../../Interfaces/SideBarProps';
 
 
-const SideBar: React.FC<SideBarProps> = ({ menuItems, activeItem, setActiveItem }) => {
+const SideBar: FC<SideBarProps> = ({ menuItems, activeItem, setActiveItem }) => {
 
     const handleItemClick = (itemName: string) => {
         setActiveItem(itemName);

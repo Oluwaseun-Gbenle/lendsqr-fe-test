@@ -1,10 +1,8 @@
-// NavBar.tsx
 import React from 'react';
 import '../../Styles/NavBar.scss';
 import LogoSVG from '../../Utils/LogoSVG';
 import { NavBarProps } from '../../Interfaces/NavBarProps';
 import { arrowDown2SVG, bellSVG, searchSVG } from '../../Utils/svg-icons';
-// Import the logo if you have an SVG or image file
 
 
 const NavBar: React.FC<NavBarProps> = ({ user }) => {

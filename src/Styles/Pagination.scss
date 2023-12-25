@@ -1,0 +1,50 @@
+//color variables
+$color-primary: #fff;
+$color-text: #213f7d;
+$background-color: #fbfbfb;
+$color-faint-blue: #545F7D;
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    margin-left: 60px;
+    margin-right: 60px;
+  
+    .items-per-page {
+        color: $color-faint-blue;
+      select {
+        margin: 0 5px;
+        padding: 4px 12px;
+        border: none;
+        border-radius: 4px;
+        background: rgba(33, 63, 125, 0.10);
+      }
+    }
+  
+    .page-controls {
+      button,span {
+        margin: 0 5px;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        color: $color-faint-blue;
+  
+        &:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+  
+        &.active {
+          color: $color-text;
+          font-weight: 600;
+        }
+  
+        &:hover:not(:disabled):not(.active) {
+          color: $color-text;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  

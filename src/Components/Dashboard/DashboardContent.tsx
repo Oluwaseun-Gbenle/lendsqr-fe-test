@@ -1,11 +1,15 @@
-import NotAvailable from "../NotAvailable";
+import UnavailablePage from "../UnavailablePage";
 import Users from "./Users";
+import UsersDetails from "./UsersDetails";
 
-export const dashboardContent = (activeTab: string) => {
-  switch (activeTab) {
+export const dashboardContent = (activeItem: string,setActiveItem:any) => {
+  switch (activeItem) {
     case 'Users':
-      return <Users />;
+      //return <Users setActiveItem={setActiveItem}/>;
+      return <UsersDetails/>
+      case 'Users Details':
+        return <UsersDetails/>
     default:
-      return <NotAvailable />;
+      return <UnavailablePage />;
   }
 };

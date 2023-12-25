@@ -4,7 +4,7 @@
       "username": "Adedeji",
       "email": "adedeji@lendsqr.com",
       "phone": "08078903721",
-      "dateJoined": "May 15, 2020 10:00 AM",
+      "date": "May 15, 2020 10:00 AM",
       "status": "Inactive"
     },
     {
@@ -12,7 +12,7 @@
       "username": "Debby Ogana",
       "email": "debby2@irorun.com",
       "phone": "08160789028",
-      "dateJoined": "Apr 30, 2020 10:00 AM",
+      "date": "Apr 30, 2020 10:00 AM",
       "status": "Pending"
     },
     {
@@ -20,7 +20,7 @@
       "username": "Grace Effiom",
       "email": "grace@lendstar.com",
       "phone": "07060789022",
-      "dateJoined": "Apr 30, 2020 10:00 AM",
+      "date": "Apr 30, 2020 10:00 AM",
       "status": "Blacklisted"
     }
   ]

@@ -3,14 +3,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap");
 //color variables
+$color-primary: #fff;
 $color-text: #213f7d;
 $background-color: #fbfbfb;
-$color-faint-blue: #7a8cb1;
+$color-faint-blue: #545f7d;
+$blacklist: #e4033b;
+$active: #39cdcc;
+$pending: #e9b200;
+$faded-blacklist: rgb(228, 3, 59, 0.1);
+$faded-active: rgb(57, 205, 204, 0.1);
+$faded-pending: rgb(233, 178, 0, 0.1);
+$faded-inactive: rgb(84, 95, 125, 0.1);
+$border: rgba(33, 63, 125, 0.06);
+$box-shadow: rgba(0, 0, 0, 0.1);
+$box-shadow2: rgba(0, 0, 0, 0.04);
 
 .dashboard {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   font-family: "Work Sans", sans-serif;
 
   .dashboard-content {
@@ -23,15 +34,14 @@ $color-faint-blue: #7a8cb1;
       display: flex;
       justify-content: space-between;
       margin: 30px 60px;
-
     }
 
     .card {
       border-radius: 4px;
-      border: 1px solid rgba(33, 63, 125, 0.06);
+      border: 1px solid $border;
       background: #fff;
-      box-shadow: 3px 5px 20px 0px rgba(0, 0, 0, 0.04);
-      width: 145px;
+      box-shadow: 3px 5px 20px 0px $box-shadow2;
+      width: 190px;
       height: 102px;
       padding: 30px;
     }
@@ -42,7 +52,7 @@ $color-faint-blue: #7a8cb1;
     }
     .page-title {
       color: $color-text;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 600;
       margin: 60px;
       margin-bottom: 0;
@@ -61,9 +71,9 @@ $color-faint-blue: #7a8cb1;
 
   .user-table {
     border-radius: 4px;
-    border: 1px solid rgba(33, 63, 125, 0.06);
-    background: #fff;
-    box-shadow: 3px 5px 20px 0px rgba(0, 0, 0, 0.04);
+    border: 1px solid $border;
+    background: $color-primary;
+    box-shadow: 3px 5px 20px 0px $box-shadow2;
     border-collapse: collapse;
     margin-left: 60px;
     width: 90%;
@@ -75,11 +85,14 @@ $color-faint-blue: #7a8cb1;
         font-weight: 500;
         font-size: 12px;
         color: $color-text;
-        span{
-           position: relative;
-           top: 4px;
-           left: 4px;
+        span {
+          position: relative;
+          top: 4px;
+          left: 4px;
         }
+      }
+      .filter-icon {
+        cursor: pointer;
       }
     }
     tbody {
@@ -94,7 +107,7 @@ $color-faint-blue: #7a8cb1;
           padding: 20px 15px;
           color: $color-faint-blue;
           font-size: 12px;
-          border-bottom: 1px solid #e1e1e1; // Adjust the color to match the image
+          border-bottom: 1px solid #e1e1e1;
           &:last-child {
             text-align: center;
           }
@@ -106,20 +119,296 @@ $color-faint-blue: #7a8cb1;
       border-radius: 5px;
       color: #fff;
       &.active {
-        background-color: rgb(57, 205, 98,0.1);
-        color: rgb(57, 205, 98);
+        background-color: $faded-active;
+        color: $active;
       }
       &.inactive {
-        background-color: rgb(84, 95, 125,0.1);
-        color: rgb(84, 95, 125);
+        background-color: $faded-active;
+        color: $color-faint-blue;
       }
       &.pending {
-        background-color: rgb(233, 178, 0,0.1);
-        color: rgb(233, 178, 0)
+        background-color: $faded-pending;
+        color: $pending;
       }
       &.blacklisted {
-        background-color: rgb(228, 3, 59,0.1);
-        color: rgb(228, 3, 59);
+        background-color: $faded-blacklist;
+        color: $blacklist;
+      }
+    }
+  }
+  // DropdownMenu
+  .dropdown-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0px;
+      border: 1px solid #ddd;
+      background-color: white;
+      min-width: 140px;
+      z-index: 1000;
+      padding: 10px;
+      box-shadow: 0 8px 16px $box-shadow;
+      .dropdown-icon {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .dropdown-route {
+        padding: 12px 16px;
+        display: block;
+        text-decoration: none;
+        color: #333;
+
+        &:hover {
+          background-color: #f5f5f5;
+        }
+      }
+    }
+  }
+
+  //filter
+  .filter-form {
+    display: flex;
+    z-index: 1000;
+    position: absolute;
+    top: 57%;
+    left: 21%;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: $color-primary;
+    box-shadow: 0 4px 8px $box-shadow;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+      font-size: 14px;
+
+      select,
+      input {
+        padding: 10px;
+        width: 230px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        &::placeholder {
+          color: #aaa;
+        }
+      }
+    }
+    .select-input {
+      width: 250px;
+      padding-right: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-around;
+      cursor: pointer;
+
+      button {
+        padding: 10px 20px;
+        width: 98px;
+        border-radius: 4px;
+        cursor: pointer;
+        &:first-child {
+          background-color: $color-primary;
+          border: 1px solid $color-faint-blue;
+        }
+        &:last-child {
+          border: none;
+          background-color: #17a2b8;
+          color: white;
+        }
+      }
+    }
+  }
+  //user details
+  .go-back-text {
+    display: flex;
+    align-items: center;
+    margin-bottom: 9px;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 10px;
+  }
+  .heading-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .user-status-btns {
+    display: flex;
+    gap: 20px;
+  }
+  .blacklist-user-btn,
+  .activate-user-btn {
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 12px 16px;
+  }
+  .blacklist-user-btn {
+    border: 1px solid $blacklist;
+    color: $blacklist;
+  }
+  .activate-user-btn {
+    border: 1px solid $active;
+    color: $active;
+  }
+  .user-detail-card {
+    padding: 20px;
+    padding-bottom: 0;
+    margin: 40px 60px;
+    border-radius: 4px;
+    border: 1px solid $border;
+    background: $color-primary;
+    box-shadow: 3px 5px 20px 0px $box-shadow2;
+    border-collapse: collapse;
+    margin: 40px 60px;
+
+    .user-details-display {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+
+      .avatar {
+        background-color: $faded-inactive;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        padding: 20px;
+        margin-right: 10px;
+      }
+
+      .user-text {
+        h2 {
+          margin: 0;
+        }
+        p {
+          margin: 0;
+        }
+      }
+    }
+    .user-icon {
+      text-align: center;
+    }
+    .user-tier {
+      padding: 20px;
+      border-left: 1px solid $faded-inactive;
+      border-right: 1px solid $faded-inactive;
+      .user-tier-text {
+        margin-bottom: 10px;
+      }
+      .star-icon {
+        margin-left: 5px;
+      }
+    }
+  }
+  //user details nav
+  .navigation-tabs {
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-around;
+
+    .tab-item {
+      padding: 10px 20px;
+      border: none;
+      background: none;
+      cursor: pointer;
+
+      &.active {
+        border-bottom: 2px solid $active;
+        color: $active;
+      }
+    }
+  }
+  //user details table
+  .user-detail-section {
+    padding: 20px;
+    margin: 40px 60px;
+    border-radius: 4px;
+    border: 1px solid $border;
+    background: $color-primary;
+    box-shadow: 3px 5px 20px 0px $box-shadow2;
+    border-collapse: collapse;
+    .details-heading {
+      padding-bottom: 10px;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+    .personal-information,
+    .education-and-employment,
+    .socials,
+    .guarantor {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+
+      .info-row {
+        display: contents;
+
+        .info-item {
+          .details-title {
+            color: #545f7d;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: normal;
+            margin-bottom: 4px;
+            margin-top: 30px;
+          }
+
+          p {
+            margin: 0;
+            font-weight: bold;
+            font-size: 16px;
+            color: $color-faint-blue;
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+
+        .info-item {
+          margin-bottom: 20px;
+        }
+      }
+    }
+.guarantor{
+  margin-top: 40px;
+}
+    .education-and-employment,.guarantor {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .section,    &:not(:last-child).guarantor-section {
+      margin-top: 30px;
+      border-bottom: 1px solid rgb(84, 95, 125, 0.2);
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+
+        .info-item {
+          display: flex;
+          flex-direction: column;
+        }
       }
     }
   }
